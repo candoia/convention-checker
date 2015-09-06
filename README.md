@@ -1,6 +1,6 @@
 # Candoia app: Top Performers 
 
-This app computes and visualizes number of naming convnetion violation 
+This app computes and visualizes number of naming convention violation 
 
 in the project. To run add this app to your Candoia installation.
 
