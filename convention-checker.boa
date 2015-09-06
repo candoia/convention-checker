@@ -1,0 +1,54 @@
+# Classes that starts with lowercase characters
+# output: project id, package.className (.className for default packages).
+
+p: Project = input;
+out: output sum[string] of int;
+count: output sum of int;
+package: string = "";
+
+counts := 0;
+
+isLowerCase:= function(s: string) : bool{
+	        if(match(s, `^a`)||match(s, `^b`)||match(s, `^c`)||match(s, `^d`)||match(s, `^e`)||
+	        match(s, `^f`)||match(s, `^g`)||match(s, `^h`)||match(s, `^i`)||
+	        match(s, `^j`)||match(s, `^k`)||match(s, `^l`)||
+	        match(s, `^m`)||match(s, `^n`)||match(s, `^o`)||
+	        match(s, `^p`)||match(s, `^q`)||match(s, `^r`)||
+	        match(s, `^s`)||match(s, `^t`)||match(s, `^u`)||
+	        match(s, `^v`)||match(s, `^w`)||match(s, `^x`)||
+	        match(s, `^y`)||match(s, `^z`))
+	            return true;
+	            return false;
+        };
+        
+
+visit(p, visitor {
+	before node: CodeRepository -> {
+		# only look at the latest snapshot
+		# and only include Java files
+		snapshot := getsnapshot(node, "OTHER");
+		foreach (i: int; def(snapshot[i]))
+			visit(snapshot[i]);
+		stop;
+	}
+	
+	#before node: Namespace -> {
+	#    package = node.name;
+	#}
+	    
+	before node: Declaration -> {
+		# only interested in fields, which only occur inside (anonymous) classes
+		if (node.kind == TypeKind.CLASS || node.kind == TypeKind.ANONYMOUS) {
+		    first:= substring(node.name, 0, 1);
+		    if(len(first)==1){
+		        if(isLowerCase(first))
+		            counts++;
+		            #classes[p.id] << package + "." + node.name;
+		    }
+		}
+		stop;
+	}
+});
+
+#if (counts > 0)
+    out[p.project_url] << counts;

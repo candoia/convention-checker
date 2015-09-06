@@ -1,0 +1,19 @@
+
+{
+  "name": "convention-checker",
+  "productName": "Convnetion Checker",
+  "version": "0.1.0",
+  "author": "Nitin Mukesh Tiwari <nmtiwari@iastate.edu>",
+  "description": "Checks naming conventions,e.g. class names should start with an uppercase letter",
+  "main": "main.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/candoia/convention-checker"
+  },
+  "icon": {
+  "type": "fa",
+  "name": "pie-chart"
+  }
+}
+
+
