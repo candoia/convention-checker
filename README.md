@@ -1,4 +1,4 @@
-# Candoia app: Top Performers 
+# Candoia app: Convention Checker
 
 This app computes and visualizes number of naming convention violation 
 
